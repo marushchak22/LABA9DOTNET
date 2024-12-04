@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Обробка масиву чисел";
+}
+
+<h1>Обробка масиву чисел</h1>
+
+<form method="post" asp-action="Index" asp-controller="Home">
+    <div>
+        <label for="inputArray">Введіть масив чисел (через кому):</label>
+        <input type="text" id="inputArray" name="inputArray" value="" required />
+    </div>
+    <button type="submit">Обробити</button>
+</form>
+
+@if (!string.IsNullOrEmpty(ViewBag.Result))
+{
+    <h2>Результат:</h2>
+    <p>@ViewBag.Result</p>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div style="color: red;">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
